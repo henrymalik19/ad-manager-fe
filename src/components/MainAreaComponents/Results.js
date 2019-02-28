@@ -58,7 +58,7 @@ class Results extends Component {
                     </div>  
     
                     <div className="Results-UserInfo">
-                        <p>{JSON.stringify(this.state.userData)}</p>
+                        <p>{JSON.stringify(this.props.searchData)}</p>
                     </div>
                 </div>
             )

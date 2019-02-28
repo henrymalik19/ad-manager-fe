@@ -38,7 +38,8 @@ class MainArea extends Component {
                     searchResults: false,
                     searchData: ''
                 });             
-            }         
+            }  
+            console.log(this.state);          
         };
     }
 
@@ -47,7 +48,7 @@ class MainArea extends Component {
         let renderResults;
         if(this.state.searchResults) {
             renderResults = <Results searchData={this.state.searchData} />
-        }        
+        }
 
         return (
             <div className="MainArea">
