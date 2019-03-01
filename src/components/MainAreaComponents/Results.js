@@ -3,6 +3,11 @@ import './Results.css';
 
 class Results extends Component {
 
+    state = {
+        listData: '',
+        listDataDetail: ''
+    }
+
     renderList() {
 
         let userList;
@@ -18,12 +23,10 @@ class Results extends Component {
             });
 
         } else {
-
+            let user = this.props.searchData;
             userList =
-                <div className="Results-UserCard" key={this.props.searchData.SamAccountName}>
-                    <h3>{this.props.searchData.GivenName} {this.props.searchData.Surname}</h3>
-                    <h4>{this.props.searchData.Department}</h4>
-                    <p>{this.props.searchData.EmailAddress}</p>
+                <div className="Results-UserCard" onClick={this.props.displayUserDetails} key={user.SamAccountName} data-samname={user.SamAccountName}>
+                    {user.GivenName} {user.Surname}
                 </div>;
         };
 
@@ -32,10 +35,10 @@ class Results extends Component {
 
     renderListDetail() {
         if(typeof this.props.userData === 'object') {
-
+            let counter = 0;
             let html = Object.keys(this.props.userData).map( key=> {
                 return (
-                        <div className="Results-List-Detail-Props">
+                        <div className="Results-List-Detail-Props" key={counter++}>
                             <p className="Results-List-Detail-Props-Key">{key}</p>
                             <textarea className="Results-List-Detail-Props-Value" cols="30" rows="5" value={JSON.stringify(this.props.userData[key])}></textarea>
                             {/* <input type="text" className="Results-List-Detail-Props-Value" value={JSON.stringify(this.props.userData[key])}/> */}

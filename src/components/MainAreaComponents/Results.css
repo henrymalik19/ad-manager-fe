@@ -1,7 +1,7 @@
 .Results {
     display: flex;
     height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .Results-List {
