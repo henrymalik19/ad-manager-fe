@@ -1,4 +1,4 @@
-[  
+const malik = [  
     {  
        "AccountExpirationDate":null,
        "accountExpires":9223372036854776000,
@@ -1600,7 +1600,7 @@
 
 
 
- [  
+ const mike = [  
     {  
        "AccountExpirationDate":null,
        "accountExpires":0,
@@ -11062,3 +11062,5 @@
        "PropertyCount":152
     }
  ]
+
+ export { malik, mike }

@@ -5,13 +5,18 @@ import './MainArea.css';
 import Header from './MainAreaComponents/Header';
 import Results from "./MainAreaComponents/Results";
 
+
+// Sample Data
+import { malik, mike } from '../data/sampleData';
+
 class MainArea extends Component {
     constructor(props) {
         super(props);  
         
         this.state = {
-            searchResults: false,
-            searchData: ''
+            displayResults: false,
+            searchData: '',
+            userData: ''
         }
     }
 
@@ -19,43 +24,70 @@ class MainArea extends Component {
         
         if(e.key === 'Enter') {
             
-            let url = "http://localhost:5000/user";
+            // let url = "http://localhost:5000/user";
             
-            try {
-                let res = await fetch(`${url}?user=${e.target.value}`);            
-                res = await res.json();
-                res = JSON.parse(res);
+            // try {
+            //     let res = await fetch(`${url}?user=${e.target.value}`);            
+            //     res = await res.json();
+            //     res = JSON.parse(res);
 
-                this.setState({
-                    searchResults: true,
-                    searchData: res
-                });
+            //     this.setState({
+            //         searchResults: true,
+            //         searchData: res
+            //     });
 
-            } catch (error) {
-                // console.log(error);
+            // } catch (error) {
+            //     // console.log(error);
                 
+            //     this.setState({
+            //         searchResults: false,
+            //         searchData: ''
+            //     });             
+            // }  
+            if (e.target.value === 'malik') {
                 this.setState({
-                    searchResults: false,
-                    searchData: ''
-                });             
-            }  
-            console.log(this.state);          
+                    displayResults: true,
+                    searchData: malik
+                });  
+            } else {  
+                this.setState({
+                    displayResults: true,
+                    searchData: mike
+                });
+            };  
         };
     }
 
-    render() {
 
-        let renderResults;
-        if(this.state.searchResults) {
-            renderResults = <Results searchData={this.state.searchData} />
+    displayUserDetails(e) {
+
+        let user = this.state.searchData.find( el => {
+            return el.SamAccountName === e.target.dataset.samname;            
+        });
+        
+        // e.target.classList.add('selected');
+        console.log(user);
+        
+        this.setState({
+            userData: user
+        });
+    }
+
+
+    renderResults() {
+        if(this.state.displayResults) {
+            return <Results searchData={this.state.searchData} userData={this.state.userData} displayUserDetails={this.displayUserDetails.bind(this)} />
         }
+    }
 
+
+    render() {
         return (
             <div className="MainArea">
                 <Header
-                    onEnter={(e) => this.getUsers(e)}
+                    getUsers={(e) => this.getUsers(e)}
                 />
-                {renderResults}
+                {this.renderResults()}
             </div>
         );
     }

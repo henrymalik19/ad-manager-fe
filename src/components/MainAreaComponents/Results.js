@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import './Results.css';
 
 class Results extends Component {
-   
-    state = {
-        userData: ''
-    }
-  
-    
+
     renderList() {
 
         let userList;
@@ -16,7 +11,7 @@ class Results extends Component {
 
             userList = this.props.searchData.map( user => {
                 return ( 
-                    <div className="Results-UserCard" onClick={this.renderUser.bind(this)} key={user.SamAccountName} data-samname={user.SamAccountName}>
+                    <div className="Results-UserCard" onClick={this.props.displayUserDetails} key={user.SamAccountName} data-samname={user.SamAccountName}>
                         {user.GivenName} {user.Surname}
                     </div>
                 );
@@ -35,47 +30,38 @@ class Results extends Component {
         return userList;
     }
 
-    renderUser(e) {
+    renderListDetail() {
+        if(typeof this.props.userData === 'object') {
 
-        let user = this.props.searchData.find( el => {
-            return el.SamAccountName === e.target.dataset.samname
-        });
+            let html = Object.keys(this.props.userData).map( key=> {
+                return (
+                        <div className="Results-List-Detail-Props">
+                            <p className="Results-List-Detail-Props-Key">{key}</p>
+                            <textarea className="Results-List-Detail-Props-Value" cols="30" rows="5" value={JSON.stringify(this.props.userData[key])}></textarea>
+                            {/* <input type="text" className="Results-List-Detail-Props-Value" value={JSON.stringify(this.props.userData[key])}/> */}
+                        </div>
+                    )
+            });
 
-        this.setState({
-            userData: user
-        });
+            return html;
+        };
+        
     }
 
-    render
+
     render() {
+        return (
+            <div className="Results">
+                <div className="Results-List">
+                    {this.renderList()}
+                </div>  
 
-        if(typeof this.state.userData === 'object') {
-
-            return (
-                <div className="Results">
-                    <div className="Results-List">
-                        {this.renderList()}
-                    </div>  
-    
-                    <div className="Results-UserInfo">
-                        <p>{JSON.stringify(this.props.searchData)}</p>
-                    </div>
+                <div className="Results-List-Detail">
+                    {this.renderListDetail()}
                 </div>
-            )
-            
-        } else {
-            return (
-                <div className="Results">
-                    <div className="Results-List">
-                        {this.renderList()}
-                    </div>  
-    
-                    <div className="Results-UserInfo">
-                    </div>
-                </div>
-            )
-        }
-    } 
+            </div>
+        )
+    }
 };
 
 export default Results;
