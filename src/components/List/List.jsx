@@ -8,7 +8,7 @@ import Listitem from './ListItem';
 function List(props) {
   return (
     <div className="List">
-        {props.searchData.map( user => <Listitem user={user} key={user.ObjectGUID} listItemClick={props.listItemClick} />)}      
+        {props.searchData.map( searchItem => <Listitem searchItem={searchItem} key={searchItem.ObjectGUID} listItemClick={props.listItemClick} />)}      
     </div>
   )
 }

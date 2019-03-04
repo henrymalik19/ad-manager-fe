@@ -4,11 +4,11 @@ import './ListItem.css';
 
 function ListItem(props) {
 
-  const [listData, setListData] = useState(props.user);
+  const [listData, setListData] = useState(props.searchItem);
 
   return (
     <div className="ListItem" onClick={e => (props.listItemClick(listData))}>
-        {props.user.GivenName} {props.user.Surname}
+        {props.searchItem.Name}
     </div>
   )
 }

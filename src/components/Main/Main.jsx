@@ -2,7 +2,7 @@ import React, { Component} from 'react';
 import './Main.css';
 
 //Components Import
-import SearchBox from '../SearchBox/SearchBox';
+import SearchArea from '../SearchArea/SearchArea';
 import Results from "../Results/Results";
 
 // Sample Data
@@ -18,10 +18,11 @@ class Main extends Component {
             displayError: false,
             disableInput: false,
             searchData: '',
+            detailData: ''
         }
     }
 
-    async getUsers(e, query) {
+    async searchAD(e, query, queryType) {
         e.preventDefault();     
             
         this.setState({
@@ -29,12 +30,13 @@ class Main extends Component {
             displayLoader: true,
             displayError: false,
             disableInput: true,
+            detailData: ''
         });
 
         // Online Devleopment
-        let url = "http://localhost:5000/user";
+        let url = `http://localhost:5000/${queryType}`;
         try {
-            let res = await fetch(`${url}?user=${query}`);            
+            let res = await fetch(`${url}?${queryType}=${query}`);            
             res = await res.json();
             res = JSON.parse(res);
             
@@ -84,20 +86,28 @@ class Main extends Component {
         //         searchData: '',
         //         disableInput: false
         //     });  
-
         // };
+    }
+
+    listItemClick(listData) {        
+        this.setState({ detailData: listData});
     }
 
     renderResultsDiv() {
         if(this.state.displayResults) {
-            return <Results searchData={this.state.searchData} userData={this.state.userData}/>
+            return (
+            <Results 
+                searchData={this.state.searchData} 
+                detailData={this.state.detailData}
+                listItemClick={this.listItemClick.bind(this)}
+            />)
         }
     }
 
     render() {
         return (
             <div className="Main">
-                <SearchBox getUsers={this.getUsers.bind(this)} disableInput={this.state.disableInput} />
+                <SearchArea searchAD={this.searchAD.bind(this)} disableInput={this.state.disableInput} />
                 <p className="Main-Error" style={{display: this.state.displayError ? 'block' : 'none'}}>Submitted Search Returned Nothing...</p>
                 <div className="Main-Loader" style={{display: this.state.displayLoader ? 'block' : 'none'}}></div>
                 {this.renderResultsDiv()}

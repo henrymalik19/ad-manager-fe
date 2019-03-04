@@ -3,12 +3,12 @@ import './DetailListItem.css';
 
 function DetailListItem(props) {
 
-    const [value, setValue] = useState(props.objProp);
+    let [value, setValue] = useState(props.objProp);
 
     return (
     <div className="DetailListItem">
         <p className="DetailListItem-Key">{props.objKey}</p>
-        <textarea className="DetailListItem-Value" cols="30" rows="5" defaultValue={JSON.stringify(value)} onChange={e => setValue(e.target.value)}></textarea>
+        <textarea className="DetailListItem-Value" cols="30" rows="5" value={props.objProp} onChange={e => setValue(e.target.value)}></textarea>
     </div>
     )
 };
