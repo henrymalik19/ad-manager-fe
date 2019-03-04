@@ -1,0 +1,5 @@
+.List {
+    height: 100%;
+    width: 30%;
+    overflow-y: auto;
+}

@@ -1,67 +1,28 @@
 import React, { Component } from 'react';
 import './Results.css';
 
+// Import COmponents
+import List from '../List/List';
+import DetailList from '../List/DetailList';
+
 class Results extends Component {
-
-    state = {
-        listViewData: '',
-        listViewDetailData: ''
-    }
-
-    renderListView() {
-
-        let userList;
+    constructor(props) {
+        super(props);  
         
-        if(this.props.searchData.length !== undefined) {
-
-            userList = this.props.searchData.map( user => {
-                return ( 
-                    <div className="Results-UserCard" onClick={this.props.displayUserDetails} key={user.SamAccountName} data-samname={user.SamAccountName}>
-                        {user.GivenName} {user.Surname}
-                    </div>
-                );
-            });
-
-        } else {
-            let user = this.props.searchData;
-            userList =
-                <div className="Results-UserCard" onClick={this.props.displayUserDetails} key={user.SamAccountName} data-samname={user.SamAccountName}>
-                    {user.GivenName} {user.Surname}
-                </div>;
-        };
-
-        return userList;
+        this.state = {
+            detailData: ''
+        }
     }
 
-    renderDetailView() {
-        if(typeof this.props.userData === 'object') {
-            let counter = 0;
-            let html = Object.keys(this.props.userData).map( key=> {
-                return (
-                        <div className="Results-List-Detail-Props" key={counter++}>
-                            <p className="Results-List-Detail-Props-Key">{key}</p>
-                            <textarea className="Results-List-Detail-Props-Value" cols="30" rows="5" value={JSON.stringify(this.props.userData[key])}></textarea>
-                            {/* <input type="text" className="Results-List-Detail-Props-Value" value={JSON.stringify(this.props.userData[key])}/> */}
-                        </div>
-                    )
-            });
-
-            return html;
-        };
-        
+    listItemClick(listData) {        
+        this.setState({ detailData: listData});
     }
-
 
     render() {
         return (
             <div className="Results">
-                <div className="Results-List">
-                    {this.renderListView()}
-                </div>  
-
-                <div className="Results-List-Detail">
-                    {this.renderDetailView()}
-                </div>
+                <List searchData={this.props.searchData} listItemClick={this.listItemClick.bind(this)} />
+                <DetailList detailData={this.state.detailData} />
             </div>
         )
     }

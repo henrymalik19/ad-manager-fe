@@ -1,0 +1,25 @@
+.DetailListItem {
+    /* border-radius: 5px; */
+    margin: 10px;
+    padding: 10px;
+    -webkit-box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 46px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: space-between;
+}
+
+.DetailListItem-Key {
+    text-align: center;
+}
+
+.DetailListItem-Value {
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(235, 235, 235);
+    padding: 0 5px;
+    width: 40%;
+    height: 100px;
+    overflow-wrap: break-word;
+    resize: none;
+}

@@ -16,109 +16,83 @@ class Main extends Component {
             displayResults: false,
             displayLoader: false,
             displayError: false,
-            displayCompare: false,
+            disableInput: false,
             searchData: '',
-            userData: '',
-            disableInput: false
         }
     }
 
-    async getUsers(e) {
+    async getUsers(e, query) {
+        e.preventDefault();     
+            
+        this.setState({
+            displayResults: false,
+            displayLoader: true,
+            displayError: false,
+            disableInput: true,
+        });
 
-        let userQuery;
-
-        if(e.key === 'Enter') {
+        // Online Devleopment
+        let url = "http://localhost:5000/user";
+        try {
+            let res = await fetch(`${url}?user=${query}`);            
+            res = await res.json();
+            res = JSON.parse(res);
+            
+            if(res.length === undefined) {
+                res = [res];         
+            };
             
             this.setState({
-                displayResults: false,
-                displayLoader: true,
-                displayError: false,
-                disableInput: true,
-                userData: ''
+                displayResults: true,
+                displayLoader: false,
+                disableInput: false,
+                searchData: res,
             });
 
-            // Online Devleopment
-            let url = "http://localhost:5000/user";
-            userQuery = e.target.value;
-            try {
-                let res = await fetch(`${url}?user=${userQuery}`);            
-                res = await res.json();
-                res = JSON.parse(res);
-
-                this.setState({
-                    displayResults: true,
-                    displayLoader: false,
-                    searchData: res,
-                    disableInput: false
-                });
-
-            } catch (error) {
-                console.log(error);
+        } catch (error) {
+            console.log(error);
+            
+            this.setState({
+                displayLoader: false,
+                displayError: true,
+                disableInput: false,
+                searchData: '',
+            });       
                 
-                this.setState({
-                    displayLoader: false,
-                    displayError: true,
-                    searchData: '',
-                    disableInput: false
-                });       
-                 
-            }  
+        }  
 
-            // Offline Development
-            // if (e.target.value === 'malik') {
-            //     this.setState({
-            //         displayResults: true,
-            //         displayLoader: false,
-            //         searchData: malik,
-            //         disableInput: false
-            //     });  
-            // } else if (e.target.value === 'mike'){  
-            //     this.setState({
-            //         displayResults: true,
-            //         displayLoader: false,
-            //         searchData: mike,
-            //         disableInput: false
-            //     });
-            // } else {
-            //     this.setState({
-            //         displayResults: false,
-            //         displayLoader: false,
-            //         displayError: true,
-            //         searchData: '',
-            //         disableInput: false
-            //     });  
+        // Offline Development
+        // if (e.target.value === 'malik') {
+        //     this.setState({
+        //         displayResults: true,
+        //         displayLoader: false,
+        //         searchData: malik,
+        //         disableInput: false
+        //     });  
+        // } else if (e.target.value === 'mike'){  
+        //     this.setState({
+        //         displayResults: true,
+        //         displayLoader: false,
+        //         searchData: mike,
+        //         disableInput: false
+        //     });
+        // } else {
+        //     this.setState({
+        //         displayResults: false,
+        //         displayLoader: false,
+        //         displayError: true,
+        //         searchData: '',
+        //         disableInput: false
+        //     });  
 
-            // };  
-        };
-    }
-
-
-    displayUserDetails(e) {
-
-        if(this.state.searchData.length === undefined) {
-            this.setState({
-                userData: this.state.searchData
-            });
-            
-        } else {
-            let user = this.state.searchData.find( el => {
-                return el.SamAccountName === e.target.dataset.samname;            
-            });
-            
-            // e.target.classList.add('selected');
-            
-            this.setState({
-                userData: user
-            });
-        }
+        // };
     }
 
     renderResultsDiv() {
         if(this.state.displayResults) {
-            return <Results searchData={this.state.searchData} userData={this.state.userData} displayUserDetails={this.displayUserDetails.bind(this)} />
+            return <Results searchData={this.state.searchData} userData={this.state.userData}/>
         }
     }
-
 
     render() {
         return (
