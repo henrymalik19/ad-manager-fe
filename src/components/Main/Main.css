@@ -1,4 +1,4 @@
-.MainArea {
+.Main {
     display: flex;
     flex-direction: column;
     /* margin: 0 auto;
@@ -7,7 +7,7 @@
     height: 90vh;
 }
 
-.MainArea-Loader {
+.Main-Loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
     border-radius: 50%;
@@ -22,7 +22,7 @@
    100% { transform: rotate(360deg); }
 }
 
-.MainArea-Error {
+.Main-Error {
     color: rgb(247, 91, 91);
     text-align: center;
     font-weight: 600;

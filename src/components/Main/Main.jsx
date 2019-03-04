@@ -1,15 +1,14 @@
 import React, { Component} from 'react';
-import './MainArea.css';
+import './Main.css';
 
 //Components Import
-import Header from './MainAreaComponents/Header';
-import Results from "./MainAreaComponents/Results";
-
+import SearchBox from '../SearchBox/SearchBox';
+import Results from "../Results/Results";
 
 // Sample Data
 // import { malik, mike } from '../data/sampleData';
 
-class MainArea extends Component {
+class Main extends Component {
     constructor(props) {
         super(props);  
         
@@ -17,6 +16,7 @@ class MainArea extends Component {
             displayResults: false,
             displayLoader: false,
             displayError: false,
+            displayCompare: false,
             searchData: '',
             userData: '',
             disableInput: false
@@ -24,21 +24,24 @@ class MainArea extends Component {
     }
 
     async getUsers(e) {
-        
+
+        let userQuery;
+
         if(e.key === 'Enter') {
             
             this.setState({
                 displayResults: false,
                 displayLoader: true,
                 displayError: false,
-                disableInput: true
+                disableInput: true,
+                userData: ''
             });
 
             // Online Devleopment
             let url = "http://localhost:5000/user";
-            
+            userQuery = e.target.value;
             try {
-                let res = await fetch(`${url}?user=${e.target.value}`);            
+                let res = await fetch(`${url}?user=${userQuery}`);            
                 res = await res.json();
                 res = JSON.parse(res);
 
@@ -53,7 +56,6 @@ class MainArea extends Component {
                 console.log(error);
                 
                 this.setState({
-                    displayResults: false,
                     displayLoader: false,
                     displayError: true,
                     searchData: '',
@@ -104,14 +106,12 @@ class MainArea extends Component {
             });
             
             // e.target.classList.add('selected');
-            console.log(user);
             
             this.setState({
                 userData: user
             });
         }
     }
-
 
     renderResultsDiv() {
         if(this.state.displayResults) {
@@ -122,14 +122,14 @@ class MainArea extends Component {
 
     render() {
         return (
-            <div className="MainArea">
-                <Header getUsers={this.getUsers.bind(this)} disableInput={this.state.disableInput} />
-                <p className="MainArea-Error" style={{display: this.state.displayError ? 'block' : 'none'}}>Submitted Search Returned Nothing...</p>
-                <div className="MainArea-Loader" style={{display: this.state.displayLoader ? 'block' : 'none'}}></div>
+            <div className="Main">
+                <SearchBox getUsers={this.getUsers.bind(this)} disableInput={this.state.disableInput} />
+                <p className="Main-Error" style={{display: this.state.displayError ? 'block' : 'none'}}>Submitted Search Returned Nothing...</p>
+                <div className="Main-Loader" style={{display: this.state.displayLoader ? 'block' : 'none'}}></div>
                 {this.renderResultsDiv()}
             </div>
         );
     }
 };
 
-export default MainArea;
+export default Main;

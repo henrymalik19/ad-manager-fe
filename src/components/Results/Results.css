@@ -7,7 +7,7 @@
 .Results-List {
     height: 100%;
     width: 30%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .Results-UserCard {
@@ -30,7 +30,7 @@
 
 .Results-List-Detail {
     width: 70%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .Results-List-Detail-Props {
@@ -56,4 +56,5 @@
     width: 40%;
     height: 100px;
     overflow-wrap: break-word;
+    resize: none;
 }

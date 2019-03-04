@@ -4,11 +4,11 @@ import './Results.css';
 class Results extends Component {
 
     state = {
-        listData: '',
-        listDataDetail: ''
+        listViewData: '',
+        listViewDetailData: ''
     }
 
-    renderList() {
+    renderListView() {
 
         let userList;
         
@@ -33,7 +33,7 @@ class Results extends Component {
         return userList;
     }
 
-    renderListDetail() {
+    renderDetailView() {
         if(typeof this.props.userData === 'object') {
             let counter = 0;
             let html = Object.keys(this.props.userData).map( key=> {
@@ -56,11 +56,11 @@ class Results extends Component {
         return (
             <div className="Results">
                 <div className="Results-List">
-                    {this.renderList()}
+                    {this.renderListView()}
                 </div>  
 
                 <div className="Results-List-Detail">
-                    {this.renderListDetail()}
+                    {this.renderDetailView()}
                 </div>
             </div>
         )
