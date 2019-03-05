@@ -3,3 +3,13 @@
     width: 30%;
     overflow-y: auto;
 }
+
+.List-SearchBox {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    width: 60%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgb(167, 167, 167);
+}

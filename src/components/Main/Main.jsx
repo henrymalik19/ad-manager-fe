@@ -34,7 +34,8 @@ class Main extends Component {
         });
 
         // Online Devleopment
-        let url = `http://localhost:5000/${queryType}`;
+        // let url = `http://localhost:5000/${queryType}`;
+        let url = `http://192.168.248.76:5000/${queryType}`;
         try {
             let res = await fetch(`${url}?${queryType}=${query}`);            
             res = await res.json();

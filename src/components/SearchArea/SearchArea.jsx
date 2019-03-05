@@ -17,8 +17,8 @@ class SearchArea extends Component {
         }
         return (
             <form className="SearchArea" onSubmit={(e) => this.props.searchAD(e, this.state.value, this.state.dropDownVal)} >
-                <select  className="SearchArea-Dropdown" onChange={e => {this.setState({dropDownVal: e.target.value})}}>
-                    <option selected value="user">User</option>
+                <select  className="SearchArea-Dropdown" defaultValue="user" onChange={e => {this.setState({dropDownVal: e.target.value})}}>
+                    <option value="user">User</option>
                     <option value="group">Group</option>
                 </select>
                 <input 
