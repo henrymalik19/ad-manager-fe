@@ -6,23 +6,25 @@ import './List.css';
 import Listitem from './ListItem';
 
 function List(props) {
-    const [searchData, setSearchData] = useState(props.searchData);
-    const [searchValue, setSearchValue] = useState('');
+    let [searchData, setSearchData] = useState(props.searchData);
+    let [searchValue, setSearchValue] = useState('');
 
     const updateList = (e) => {
         setSearchValue(e.target.value);
         let newData = props.searchData.filter( searchItem => {
-            if(searchItem.Name.toLowerCase().includes(e.target.value)) {
+            if(searchItem.name.toLowerCase().includes(e.target.value)) {
                 return searchItem;
             };            
         });
-        setSearchData(newData);        
+        setSearchData(newData);   
     };
 
-    return (
-        <div className="List">
+    return (        
+        <div className="List">       
             <input type="input" className="List-SearchBox" placeholder="Narrow Search" defaultValue={searchValue} onChange={updateList}/>
-            {searchData.map( searchItem => <Listitem searchItem={searchItem} key={searchItem.ObjectGUID} listItemClick={props.listItemClick} />)}      
+    {searchData.map( searchItem => {
+        return <Listitem searchItem={searchItem} key={searchItem.dn} listItemClick={props.listItemClick} />
+    })}      
         </div>
     )
 }

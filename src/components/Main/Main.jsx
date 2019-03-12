@@ -14,6 +14,7 @@ class Main extends Component {
         
         this.state = {
             displayResults: false,
+            displayProfile: false,
             displayLoader: false,
             displayError: false,
             disableInput: false,
@@ -34,12 +35,12 @@ class Main extends Component {
         });
 
         // Online Devleopment
-        // let url = `http://localhost:5000/${queryType}`;
-        let url = `http://192.168.248.76:5000/${queryType}`;
+        let url = `http://localhost:5000/${queryType}`;
+        // let url = `http://192.168.252.126:5000/${queryType}`;
         try {
             let res = await fetch(`${url}?${queryType}=${query}`);            
             res = await res.json();
-            res = JSON.parse(res);
+            // res = JSON.parse(res);
             
             if(res.length === undefined) {
                 res = [res];         
@@ -90,8 +91,49 @@ class Main extends Component {
         // };
     }
 
-    listItemClick(listData) {        
-        this.setState({ detailData: listData});
+    async componentDidMount() {
+
+        this.setState({
+            displayResults: false,
+            displayLoader: true,
+            displayError: false,
+            disableInput: true,
+            detailData: ''
+        });
+        
+        let url = `http://localhost:5000/search`;
+        try {
+            let res = await fetch(url);            
+            res = await res.json();
+            
+            // res = JSON.parse(res);
+            this.setState({
+                displayResults: true,
+                displayLoader: false,
+                disableInput: false,
+                searchData: res,
+            });
+        } catch(err) {
+            console.log(err);
+        }
+    };
+
+
+    async listItemClick(listData) {  
+        
+        let url = `http://localhost:5000/user?user=${listData.sAMAccountName}`;
+        try {
+            let res = await fetch(url);            
+            res = await res.json();
+            
+            this.setState({
+                detailData: res[0],
+                displayProfile: true
+            });
+
+        } catch(err) {
+            console.log(err);
+        }
     }
 
     renderResultsDiv() {
@@ -100,6 +142,7 @@ class Main extends Component {
             <Results 
                 searchData={this.state.searchData} 
                 detailData={this.state.detailData}
+                displayProfile={this.state.displayProfile}
                 listItemClick={this.listItemClick.bind(this)}
             />)
         }
@@ -108,7 +151,7 @@ class Main extends Component {
     render() {
         return (
             <div className="Main">
-                <SearchArea searchAD={this.searchAD.bind(this)} disableInput={this.state.disableInput} />
+                {/* <SearchArea searchAD={this.searchAD.bind(this)} disableInput={this.state.disableInput} /> */}
                 <p className="Main-Error" style={{display: this.state.displayError ? 'block' : 'none'}}>Submitted Search Returned Nothing...</p>
                 <div className="Main-Loader" style={{display: this.state.displayLoader ? 'block' : 'none'}}></div>
                 {this.renderResultsDiv()}

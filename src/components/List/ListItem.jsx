@@ -8,7 +8,8 @@ function ListItem(props) {
 
   return (
     <div className="ListItem" onClick={e => (props.listItemClick(listData))}>
-        {props.searchItem.Name}
+        <h3>{props.searchItem.name}</h3>
+        <p>Department: {props.searchItem.department ? props.searchItem.department : 'N/A'}</p>
     </div>
   )
 }

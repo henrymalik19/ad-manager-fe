@@ -1,0 +1,37 @@
+.Profile {
+    width: 70%;
+    margin: 20px 20px;
+    overflow-y: auto;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
+.Profile-Name {
+    text-align: center;
+}
+
+.Profile-Info {
+    width: 100%;
+    /* border: 1px solid lightseagreen; */
+}
+
+.Profile-Info li {
+    margin: 5px;
+    padding: 10px;
+    list-style: none;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
+    /* border-bottom: 1px solid grey; */
+}
+
+.Profile-Info-Title {
+    font-weight: bold;
+}
+
+.Profile-Group {
+    width: 50%;
+    border: 1px solid lightseagreen;
+}
+
