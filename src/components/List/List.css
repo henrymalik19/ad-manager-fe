@@ -1,7 +1,25 @@
 .List {
     height: 100%;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.List-W-Profile {
+    height: 100%;
     width: 30%;
-    overflow-y: auto;
+}
+
+.List-Form {
+    display: flex;
+    height: 10%;
+    width: 100%;
+}
+
+.List-Dropdown {
+    margin: 20px auto;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid gray;
 }
 
 .List-SearchBox {
@@ -12,4 +30,10 @@
     outline: none;
     border: none;
     border-bottom: 1px solid rgb(167, 167, 167);
+}
+
+.List-SearchData {
+    height: 90%;
+    width: 100%;
+    overflow-y: auto;
 }

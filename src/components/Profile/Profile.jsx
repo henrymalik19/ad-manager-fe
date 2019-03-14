@@ -21,7 +21,7 @@ function Profile(props) {
           <span className="Profile-Info-Title">Email:</span> {props.detailData.mail}
         </li>
         <li>
-          <span className="Profile-Info-Title">Groups:</span> <ol>{props.detailData.memberOf.map( group => <li>{group.split(',')[0].split('=')[1]}</li> )}</ol>
+          <span className="Profile-Info-Title">Groups:</span> <ol>{props.detailData.memberOf ? props.detailData.memberOf.map( group => <li>{group.split(',')[0].split('=')[1]}</li> ) : '' }</ol>
         </li>
       </ul>
     </div>

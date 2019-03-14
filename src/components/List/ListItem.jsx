@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import './ListItem.css';
 
 function ListItem(props) {
 
-  const [listData, setListData] = useState(props.searchItem);
-
   return (
-    <div className="ListItem" onClick={e => (props.listItemClick(listData))}>
-        <h3>{props.searchItem.name}</h3>
-        <p>Department: {props.searchItem.department ? props.searchItem.department : 'N/A'}</p>
+    <div className="ListItem" onClick={e => (props.listItemClick(props.searchItem))}>
+        <p className="ListItem-Prop">{props.searchItem.givenName} {props.searchItem.sn}</p>
+        <p className="ListItem-Prop">{props.searchItem.title ? props.searchItem.title : 'N/A'}</p>
+        <p className="ListItem-Prop">{props.searchItem.department ? props.searchItem.department : 'N/A'}</p>
+        <p className="ListItem-Prop">{props.searchItem.co ? props.searchItem.co : 'N/A'}</p>
     </div>
   )
 }

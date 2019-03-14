@@ -6,8 +6,29 @@
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25);
     background-color: white;
     cursor: pointer;
+    display: flex;
 }
 
 .ListItem:hover {
     background-color: rgb(181, 238, 247);
 }
+
+.ListItem-Selected {
+    background-color: rgb(181, 238, 247);
+}
+
+.ListItem:nth-child(odd) {
+    background: aliceblue;
+}
+
+.ListItem-Prop {
+    flex: 1;
+    text-align: center;
+    padding: 0 10px;
+    border-right: 1px solid lightgray; 
+}
+
+.ListItem-Prop:last-child {
+    border-right: none;
+}
+
