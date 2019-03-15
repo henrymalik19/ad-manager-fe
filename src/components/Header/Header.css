@@ -11,6 +11,10 @@
 }
 
 .Header-Title {
-    color: #F8F8F8;
     margin: auto 0;
+}
+
+.Header-Title a {
+    color: #F8F8F8;
+    text-decoration: none;
 }

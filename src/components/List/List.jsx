@@ -33,7 +33,7 @@ function List(props) {
                 <input type="input" className="List-SearchBox" placeholder="Narrow Search..."  onChange={e => updateList(e, filter)}/>   
             </form>
             <div className="List-SearchData">
-                {searchData.map( searchItem => <Listitem searchItem={searchItem} key={searchItem.dn} listItemClick={props.listItemClick} />)}
+                {searchData.map( searchItem => <Listitem searchItem={searchItem} key={searchItem.dn} listItemClick={props.listItemClick} listType={props.listType} />)}
             </div>
         </div>
     )

@@ -6,9 +6,9 @@ function SideBar() {
   return (
     <div className="SideBar">
         <ul>
-            <li>Users</li>
-            <li>Groups</li>
-            <li>Computers</li>
+            <li><a href='/users'>Users</a></li>
+            <li><a href='/groups'>Groups</a></li>
+            <li><a href='/computers'>Computers</a></li>
         </ul>
     </div>
   )

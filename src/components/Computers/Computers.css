@@ -1,11 +1,11 @@
-.Main {
+.Computers {
     display: flex;
     width: 100%;
     height: 92.5vh;
     overflow: hidden;
 }
 
-.Main-Loader {
+.Computers-Loader {
     border: 16px solid #f3f3f3; /* Light grey */
     border-top: 16px solid #3498db; /* Blue */
     border-radius: 50%;
@@ -20,7 +20,7 @@
    100% { transform: rotate(360deg); }
 }
 
-.Main-Error {
+.Computers-Error {
     margin: 50px auto;
     color: rgb(247, 91, 91);
     text-align: center;
