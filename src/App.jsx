@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
 // Components Import
 import Header from './components/Header/Header';
-import MainArea from './components/Main/Main';
+import SideBar from './components/SideBar/SideBar';
+import Main from './components/Main/Main';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <MainArea />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <Header />
+      <SideBar />
+      <Main />
+    </div>
+  );
 }
 
 export default App;

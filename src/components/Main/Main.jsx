@@ -25,8 +25,8 @@ class Main extends Component {
             displayLoader: true,
         });
         
-        // let url = `http://192.168.248.76:5000/search`;
-        let url = `http://localhost:5000/search`;
+        let url = `http://192.168.248.76:5000/search`;
+        // let url = `http://localhost:5000/search`;
         try {
             let res = await fetch(url);            
             res = await res.json();
@@ -64,8 +64,8 @@ class Main extends Component {
 
     async listItemClick(listData) {
 
-        // let url = `http://192.168.248.76:5000/user?user=${listData.sAMAccountName}`;
-        let url = `http://localhost:5000/user?user=${listData.sAMAccountName}`;
+        let url = `http://192.168.248.76:5000/user?user=${listData.sAMAccountName}`;
+        // let url = `http://localhost:5000/user?user=${listData.sAMAccountName}`;
 
         try {
             let res = await fetch(url);            

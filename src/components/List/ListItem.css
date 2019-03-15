@@ -10,7 +10,7 @@
 }
 
 .ListItem:hover {
-    background-color: rgb(181, 238, 247);
+    background-color: rgb(203, 245, 252);
 }
 
 .ListItem-Selected {
@@ -19,6 +19,10 @@
 
 .ListItem:nth-child(odd) {
     background: aliceblue;
+}
+
+.ListItem:nth-child(odd):hover {
+    background-color: rgb(203, 245, 252);
 }
 
 .ListItem-Prop {
