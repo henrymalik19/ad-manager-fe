@@ -26,8 +26,8 @@ class Groups extends Component {
             displayLoader: true,
         });
         
-        let url = `http://192.168.248.76:5000/api/group`;
-        // let url = `http://localhost:5000/api/group`;
+        // let url = `http://192.168.248.76:5000/api/group`;
+        let url = `http://localhost:5000/api/group`;
         try {
             let res = await fetch(url);            
             res = await res.json();
@@ -65,8 +65,8 @@ class Groups extends Component {
 
     async listItemClick(listData) {
         
-        let url = `http://192.168.248.76:5000/api/group?group=${listData.sAMAccountName}`;
-        // let url = `http://localhost:5000/api/group?group=${listData.sAMAccountName}`;
+        // let url = `http://192.168.248.76:5000/api/group?group=${listData.sAMAccountName}`;
+        let url = `http://localhost:5000/api/group?group=${listData.sAMAccountName}`;
 
         try {
             let res = await fetch(url);            

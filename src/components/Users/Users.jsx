@@ -26,8 +26,8 @@ class Users extends Component {
             displayLoader: true,
         });
         
-        let url = `http://192.168.248.76:5000/api/user`;
-        // let url = `http://localhost:5000/api/user`;
+        // let url = `http://192.168.248.76:5000/api/user`;
+        let url = `http://localhost:5000/api/user`;
         try {
             let res = await fetch(url);            
             res = await res.json();
@@ -65,8 +65,8 @@ class Users extends Component {
 
     async listItemClick(listData) {
 
-        let url = `http://192.168.248.76:5000/api/user?user=${listData.sAMAccountName}`;
-        // let url = `http://localhost:5000/api/user?user=${listData.sAMAccountName}`;
+        // let url = `http://192.168.248.76:5000/api/user?user=${listData.sAMAccountName}`;
+        let url = `http://localhost:5000/api/user?user=${listData.sAMAccountName}`;
 
         try {
             let res = await fetch(url);            

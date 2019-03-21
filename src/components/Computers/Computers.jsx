@@ -26,8 +26,8 @@ class Computers extends Component {
             displayLoader: true,
         });
         
-        let url = `http://192.168.248.76:5000/api/computer`;
-        // let url = `http://localhost:5000/api/computer`;
+        // let url = `http://192.168.248.76:5000/api/computer`;
+        let url = `http://localhost:5000/api/computer`;
         try {
             let res = await fetch(url);            
             res = await res.json();
@@ -65,8 +65,8 @@ class Computers extends Component {
 
     async listItemClick(listData) {
         
-        let url = `http://192.168.248.76:5000/api/computer?computer=${listData.name}`;
-        // let url = `http://localhost:5000/api/computer?computer=${listData.name}`;
+        // let url = `http://192.168.248.76:5000/api/computer?computer=${listData.name}`;
+        let url = `http://localhost:5000/api/computer?computer=${listData.name}`;
 
         try {
             let res = await fetch(url);            
